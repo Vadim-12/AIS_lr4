@@ -9,7 +9,7 @@ en_uppercased_chars=$(echo 'ABVGDEZIYKLMNOPRSTUFYE' | iconv -t CP1251)
 
 declare -A difficult_translit=(["Ё"]="YO" ["Ж"]="ZH" ["Х"]="KH" ["Ц"]="TS" ["Ч"]="CH" ["Ш"]="SH" ["Щ"]="SHCH" ["Ю"]="YU" ["Я"]="YA")
 
-condition="$(for symbol in "${!difficult_translit[@]}"; do echo "awk '{gsub(\"$(echo $symbol | iconv -t CP1251)\",\"$(echo ${difficult_translit[$symbol]} | iconv -t CP1251)\");print}' |"; done)"
+condition="$(for char in "${!difficult_translit[@]}"; do echo "awk '{gsub(\"$(echo $char | iconv -t CP1251)\",\"$(echo ${difficult_translit[$char]} | iconv -t CP1251)\");print}' |"; done)"
 
 yes $data | head -n 500000 | iconv -f UTF8 -t CP1251 | tr $lowercased_chars $uppercased_chars | iconv -f CP1251 -t CP866 | iconv -f CP866 -t CP1251 | tr "$ru_uppercased_chars" "$en_uppercased_chars" | eval ${condition:0:-1} > $fileName.txt
 
