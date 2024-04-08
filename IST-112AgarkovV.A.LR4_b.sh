@@ -1,18 +1,18 @@
-text='Дзенаускас Игорь Дмитриевич, 08.11.2002, Гимназия №5, Информационные системы и технологии'
+data='Агарков Вадим Александрович | 24.04.2003 | Технологический лицей города Сыктывкара | Информационные системы и технологии'
+fileName='ИСТ-112АгарковВ.А.ЛР4б_текст'
 
-upChars='АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ'
-downChars='абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz'
+uppercased_chars='АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ'
+lowercased_chars='абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz'
 
-ruUpPart='АБВГДЕЗИЙКЛМНОПРСТУФЪЫЬЭ'
-engUpPart="ABVGDEZIYKLMNOPRSTUF'Y'E"
+ru_uppercased_chars='АБВГДЕЗИЙКЛМНОПРСТУФЪЫЬЭ'
+en_uppercased_chars='ABVGDEZIYKLMNOPRSTUFYE'
 
-fileName='ИСТ-112_Дзенаускас_ИД_ЛР4_Б'
 declare -A translit=(["Ё"]="YO" ["Ж"]="ZH" ["Х"]="KH" ["Ц"]="TS" ["Ч"]="CH" ["Ш"]="SH" ["Щ"]="SHCH" ["Ю"]="YU" ["Я"]="YA")
 
-yes $text | head -n 500000 |sed "y/$downChars/$upChars/" | iconv -f UTF8 -t CP1251 | iconv -f CP1251 -t CP866 | iconv -f CP866 -t CP1251 > $fileName.txt
+yes $data | head -n 500000 |sed "y/$lowercased_chars/$uppercased_chars/" | iconv -f UTF8 -t CP1251 | iconv -f CP1251 -t CP866 | iconv -f CP866 -t CP1251 > $fileName.txt
 
-cat $fileName.txt | iconv -f CP1251 -t UTF8 | sed "y/$ruUpPart/$engUpPart/" > $fileName.tmp
-sed -i ''"$(for symbol in "${!translit[@]}"; do echo "s/$symbol/${translit[$symbol]}/g;"; done)"'' "$fileName.tmp"
+cat $fileName.txt | iconv -f CP1251 -t UTF8 | sed "y/$ru_uppercased_chars/$en_uppercased_chars/" > $fileName.tmp
+sed -i ''"$(for char in "${!translit[@]}"; do echo "s/$char/${translit[$char]}/g;"; done)"'' "$fileName.tmp"
 
 cat $fileName.tmp | iconv -f UTF8 -t CP1251 > $fileName.txt
 rm $fileName.tmp
