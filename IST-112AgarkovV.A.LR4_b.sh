@@ -5,7 +5,7 @@ uppercased_chars='АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭ
 lowercased_chars='абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz'
 
 ru_uppercased_chars='АБВГДЕЗИЙКЛМНОПРСТУФЪЫЬЭ'
-en_uppercased_chars='ABVGDEZIYKLMNOPRSTUF'Y'E'
+en_uppercased_chars='ABVGDEZIYKLMNOPRSTUF"Y"E'
 
 declare -A translit=(["Ё"]="YO" ["Ж"]="ZH" ["Х"]="KH" ["Ц"]="TS" ["Ч"]="CH" ["Ш"]="SH" ["Щ"]="SHCH" ["Ю"]="YU" ["Я"]="YA")
 

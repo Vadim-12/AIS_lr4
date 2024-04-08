@@ -5,7 +5,7 @@ uppercased_chars=$(echo 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩ�
 lowercased_chars=$(echo 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz'| iconv -t CP1251)
 
 ru_uppercased_chars=$(echo 'АБВГДЕЗИЙКЛМНОПРСТУФЪЫЬЭ' | iconv -t CP1251)
-en_uppercased_chars=$(echo 'ABVGDEZIYKLMNOPRSTUF'Y'E' | iconv -t CP1251)
+en_uppercased_chars=$(echo 'ABVGDEZIYKLMNOPRSTUF"Y"E' | iconv -t CP1251)
 
 declare -A difficult_translit=(["Ё"]="YO" ["Ж"]="ZH" ["Х"]="KH" ["Ц"]="TS" ["Ч"]="CH" ["Ш"]="SH" ["Щ"]="SHCH" ["Ю"]="YU" ["Я"]="YA")
 
